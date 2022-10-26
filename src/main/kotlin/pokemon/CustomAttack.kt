@@ -13,7 +13,7 @@ open class CustomAttack(
     private val selfEffects: List<Effect> = emptyList(),
     private val opponentEffects: List<Effect> = emptyList(),
     private val selfActions: (Pokemon) -> Unit = {},
-    private val opponentActions: (Pokemon) -> Unit = {},
+    private val opponentActions: (Pokemon) -> Unit = {}
 ) :
     PhysicalMove(type, power.toDouble(), (accuracy.toDouble() / 100)) {
 

@@ -2,40 +2,76 @@ package pokemon
 
 import ru.ifmo.se.pokemon.*
 
-
 fun main() {
     val battle = Battle()
 
     val facade = CustomAttack(
-        Type.DARK, 70, 100, "Facade",
-        listOf(Effect().condition(Status.BURN).stat(Stat.ATTACK, (70 * 2)),
-            Effect().condition(Status.POISON).stat(Stat.ATTACK, (70 * 2)),
-            Effect().condition(Status.PARALYZE).stat(Stat.ATTACK, (70 * 2)))
+        Type.DARK,
+        70,
+        80,
+        "Facade",
+        opponentEffects = listOf(
+            Effect().condition(Status.POISON)
+        ),
+        opponentActions = { if (it.condition == Status.POISON) { println("pokemon is poisoned \uD83E\uDD22") } }
     )
+
     val zenHeadbutt = CustomAttack(Type.PSYCHIC, 80, 90, "Zen Headbutt")
-    val calmMind = CustomAttack(Type.PSYCHIC, 0, 0, "Calm Mind",
+    val calmMind = CustomAttack(
+        Type.PSYCHIC,
+        0,
+        0,
+        "Calm Mind",
         selfActions = { it.setMod(Stat.SPECIAL_ATTACK, 1); it.setMod(Stat.SPECIAL_DEFENSE, 1) }
     )
-    val doubleTeam = CustomAttack(Type.NORMAL, 0, 100, "Double Team",
+    val doubleTeam = CustomAttack(
+        Type.NORMAL,
+        0,
+        100,
+        "Double Team",
         selfActions = { it.setMod(Stat.EVASION, 1) }
     )
     val tackle = CustomAttack(Type.NORMAL, 40, 100, "Tackle")
-    val sandAttack = CustomAttack(Type.GROUND, 0, 100, "Sand Attack",
+    val sandAttack = CustomAttack(
+        Type.GROUND,
+        0,
+        100,
+        "Sand Attack",
         opponentActions = { it.setMod(Stat.ACCURACY, -1) }
     )
-    val psychic = CustomAttack(Type.PSYCHIC, 90, 100, "Psychic",
+    val psychic = CustomAttack(
+        Type.PSYCHIC,
+        90,
+        100,
+        "Psychic",
         opponentActions = { it.setMod(Stat.SPECIAL_DEFENSE, -1) }
     )
-    val chargeBeam = CustomAttack(Type.ELECTRIC, 50, 90, "Charge Beam",
+    val chargeBeam = CustomAttack(
+        Type.ELECTRIC,
+        50,
+        90,
+        "Charge Beam",
         opponentActions = { chance(70) { it.setMod(Stat.SPECIAL_ATTACK, 1) } }
     )
-    val wildCharge = CustomAttack(Type.ELECTRIC, 90, 100, "Wild Charge",
+    val wildCharge = CustomAttack(
+        Type.ELECTRIC,
+        90,
+        100,
+        "Wild Charge",
         opponentActions = { chance(30) { it.setMod(Stat.SPEED, -1) } }
     )
-    val crunch = CustomAttack(Type.DARK, 80, 100, "Crunch",
+    val crunch = CustomAttack(
+        Type.DARK,
+        80,
+        100,
+        "Crunch",
         opponentActions = { chance(20) { it.setMod(Stat.DEFENSE, -1) } }
     )
-    val stringShot = CustomAttack(Type.BUG, 0, 95, "String Shot",
+    val stringShot = CustomAttack(
+        Type.BUG,
+        0,
+        95,
+        "String Shot",
         opponentActions = { it.setMod(Stat.SPEED, -2) }
     )
 

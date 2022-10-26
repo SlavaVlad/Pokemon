@@ -5,13 +5,15 @@ import ru.ifmo.se.pokemon.Pokemon
 import ru.ifmo.se.pokemon.Stat
 import ru.ifmo.se.pokemon.Type
 
-class Spok (
-    name: String,
+class Spok(
+    _name: String,
     level: Int = 1,
     types: List<Type> = emptyList(),
     stats: Map<Stat, Double> = mapOf(),
     moves: List<Move> = listOf(Move.getStruggleMove())
-) : Pokemon(name, level) {
+) : Pokemon(_name, level) {
+
+    val name = _name
 
     init {
         super.setLevel(level)
@@ -39,7 +41,7 @@ class Spok (
                 stats[Stat.DEFENSE]!!,
                 stats[Stat.SPECIAL_ATTACK]!!,
                 stats[Stat.SPECIAL_DEFENSE]!!,
-                stats[Stat.SPEED]!!,
+                stats[Stat.SPEED]!!
             )
         } catch (npe: NullPointerException) {
             throw Exception("Stats Set Failed")
